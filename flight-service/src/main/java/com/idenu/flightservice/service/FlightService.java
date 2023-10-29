@@ -18,4 +18,16 @@ public class FlightService {
         log.info("flight retrieved!");
         return flight;
     }
+
+    public Flight saveFlight(Flight flight) {
+        try {
+            log.info("Saving flight in database");
+            Flight savedFlight = flightRepository.save(flight);
+            return savedFlight;
+        }
+        catch (Exception e) {
+            log.info("Error persisting flight in DB "+ e.getMessage());
+        }
+        return null;
+    }
 }

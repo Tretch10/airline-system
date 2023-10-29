@@ -6,22 +6,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Random;
+
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Entity
 @Table(name = "flight_info")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Flight {
     @Id
-    private String flightId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int flightId;
+    private String flightName;
     private String departureAirport;
     private String arrivalAirport;
     private String departureDate;
     private String arrivalDate;
+    private String flightStatus;
+    private int flightCapacity;
+
+
 }
