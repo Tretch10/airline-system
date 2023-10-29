@@ -6,10 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController()
@@ -23,5 +20,12 @@ public class FlightController {
         Flight flight = flightService.getFlightByFlightId(id);
         log.info("returning flight with id: "+ id);
         return new ResponseEntity<>(flight, HttpStatus.OK);
+    }
+
+    @PostMapping()
+    public ResponseEntity<Flight> saveFlight(@RequestBody Flight flight) {
+        Flight returnedFlight = flightService.saveFlight(flight);
+        log.info("created flight "+ returnedFlight.getFlightName() + " with id:"+ returnedFlight.getFlightId());
+        return new ResponseEntity<>(returnedFlight, HttpStatus.CREATED);
     }
 }

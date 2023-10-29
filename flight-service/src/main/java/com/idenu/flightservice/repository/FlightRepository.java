@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface FlightRepository extends JpaRepository<Flight, String> {
+public interface FlightRepository extends JpaRepository<Flight, Integer> {
     Flight findByFlightId (String flightId);
 }
